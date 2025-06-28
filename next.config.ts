@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'export',
   trailingSlash: true,
+  basePath: process.env.NODE_ENV === 'production' ? '/koinonia-app' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/koinonia-app' : '',
   images: {
     unoptimized: true,
   },

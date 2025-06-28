@@ -64,9 +64,14 @@ export const useAuth = () => {
     return () => clearTimeout(timeoutId);
   }, [checkAuth, authState.isLoading]);
 
-  const login = async (email: string) => {
+  const login = async (email: string, password: string) => {
     try {
       // Simular login - aquí deberías hacer la llamada a tu API
+      // Por ahora solo validamos que ambos campos estén presentes
+      if (!email || !password) {
+        return { success: false, error: 'Email y contraseña son requeridos' };
+      }
+
       const mockUser = {
         id: '1',
         email,

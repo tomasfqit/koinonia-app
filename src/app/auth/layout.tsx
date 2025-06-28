@@ -14,7 +14,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
                 const token = localStorage.getItem('token');
                 if (token) {
                     // Si ya tiene token, redirigir al home
-                    router.replace('/home/');
+                    const homePath = process.env.NODE_ENV === 'production' ? '/koinonia-app/home/' : '/home/';
+                    router.replace(homePath);
                 } else {
                     // Si no tiene token, permitir acceso a las páginas de auth
                     setIsLoading(false);

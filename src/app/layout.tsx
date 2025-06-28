@@ -13,6 +13,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const baseUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://tomasfqit.github.io/koinonia-app'
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
   title: "Koinonia - Comunidad Cristiana",
   description: "Aplicación para la comunidad cristiana Koinonia",
@@ -25,14 +29,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://tomasfqit.github.io/koinonia-app'),
+  metadataBase: new URL(baseUrl),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Koinonia - Comunidad Cristiana",
     description: "Aplicación para la comunidad cristiana Koinonia",
-    url: 'https://tomasfqit.github.io/koinonia-app',
+    url: baseUrl,
     siteName: 'Koinonia',
     images: [
       {

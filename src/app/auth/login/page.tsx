@@ -24,11 +24,12 @@ const LoginPage = () => {
         }
 
         try {
-            const result = await login(email);
+            const result = await login(email, password);
             
             if (result.success) {
                 // Redirigir al home después del login exitoso
-                router.push('/home/');
+                const homePath = process.env.NODE_ENV === 'production' ? '/koinonia-app/home/' : '/home/';
+                router.push(homePath);
             } else {
                 setError(result.error || 'Error al iniciar sesión');
             }
@@ -107,7 +108,7 @@ const LoginPage = () => {
 
                     <div className="text-center">
                         <a
-                            href="/auth/register/"
+                            href={process.env.NODE_ENV === 'production' ? '/koinonia-app/auth/register/' : '/auth/register/'}
                             className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
                             ¿No tienes cuenta? Regístrate
