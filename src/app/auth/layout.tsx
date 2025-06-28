@@ -9,14 +9,32 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
     const router = useRouter()
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            // Si ya tiene token, redirigir al home
-            router.replace('/home');
-        } else {
-            // Si no tiene token, permitir acceso a las páginas de auth
+        const checkAuth = () => {
+            try {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    // Si ya tiene token, redirigir al home
+                    router.replace('/home/');
+                } else {
+                    // Si no tiene token, permitir acceso a las páginas de auth
+                    setIsLoading(false);
+                }
+            } catch (error) {
+                console.error('Error checking auth:', error);
+                // Si hay error, permitir acceso a las páginas de auth
+                setIsLoading(false);
+            }
+        };
+
+        // Agregar un timeout para evitar que se quede cargando indefinidamente
+        const timeoutId = setTimeout(() => {
+            console.warn('Auth check timeout, allowing access');
             setIsLoading(false);
-        }
+        }, 3000);
+
+        checkAuth();
+
+        return () => clearTimeout(timeoutId);
     }, [router])
 
     if (isLoading) {
