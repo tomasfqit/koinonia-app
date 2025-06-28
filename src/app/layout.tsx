@@ -25,14 +25,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://koinonia-app.vercel.app'),
+  metadataBase: new URL('https://tomasfqit.github.io/koinonia-app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Koinonia - Comunidad Cristiana",
     description: "Aplicación para la comunidad cristiana Koinonia",
-    url: 'https://koinonia-app.vercel.app',
+    url: 'https://tomasfqit.github.io/koinonia-app',
     siteName: 'Koinonia',
     images: [
       {
