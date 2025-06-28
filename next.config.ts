@@ -9,28 +9,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  headers: async () => {
-    return [
-      {
-        source: '/manifest.json',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=3600, must-revalidate',
-          },
-        ],
-      },
-      {
-        source: '/icons/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ];
-  },
+  // Los headers no funcionan en export estático, se manejan en el servidor
 };
 
 export default withPWA({

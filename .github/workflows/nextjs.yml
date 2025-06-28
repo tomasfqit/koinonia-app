@@ -43,13 +43,16 @@ jobs:
       - name: Build with Next.js
         run: npm run build
       
-      - name: Copy .nojekyll file
-        run: cp public/.nojekyll out/
+      - name: Ensure .nojekyll exists
+        run: |
+          if [ ! -f "out/.nojekyll" ]; then
+            echo "Creating .nojekyll file"
+            touch out/.nojekyll
+          fi
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: './out'
 
   # Deployment job
