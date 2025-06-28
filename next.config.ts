@@ -4,13 +4,10 @@ import withPWA from 'next-pwa';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    optimizePackageImports: ['@next/font'],
-  },
+  output: 'export',
+  trailingSlash: true,
   images: {
-    domains: [],
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
   },
   headers: async () => {
     return [
